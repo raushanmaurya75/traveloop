@@ -43,11 +43,11 @@ class TripParser {
     final s = raw.trim().toLowerCase();
     if (s.isEmpty || s == 'free' || s == 'n/a' || s == 'varies' ||
         s == 'included' || s == 'complimentary') return 'Free';
-    final match = RegExp(r'(\d{1,6}(?:\.\d{1,2})?)').firstMatch(raw);
+    final match = RegExp(r'(\d{1,7}(?:\.\d{1,2})?)').firstMatch(raw);
     if (match == null) return 'Free';
     final value = double.tryParse(match.group(1)!) ?? 0;
-    if (value == 0 || value > 9999) return 'Free';
-    return '\$${value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 2)}';
+    if (value == 0 || value > 99999) return 'Free';
+    return '₹${value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 2)}';
   }
 
   static Future<Trip> parseAndSave({

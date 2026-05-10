@@ -41,7 +41,7 @@ class ShareService {
 
     buf.writeln('─────────────────────');
     final costStr = grandTotal > 0
-        ? '\$${grandTotal.toStringAsFixed(0)}'
+        ? '₹${grandTotal.toStringAsFixed(0)}'
         : 'Not specified';
     buf.writeln('💰 Total estimated cost: $costStr');
     buf.writeln();
@@ -56,10 +56,10 @@ class ShareService {
   static double _parsePrice(String raw) {
     final s = raw.trim().toLowerCase();
     if (s.isEmpty || s == 'free' || s == 'n/a' || s == 'varies') return 0;
-    final match = RegExp(r'(\d{1,6}(?:\.\d{1,2})?)').firstMatch(raw);
+    final match = RegExp(r'(\d{1,7}(?:\.\d{1,2})?)').firstMatch(raw);
     if (match == null) return 0;
     final value = double.tryParse(match.group(1)!) ?? 0;
-    return value > 9999 ? 0 : value;
+    return value > 99999 ? 0 : value;
   }
 
   static String _activityLine(Activity act) {

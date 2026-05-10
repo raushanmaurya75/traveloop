@@ -481,12 +481,10 @@ class _ActivityTile extends StatelessWidget {
                               const SizedBox(height: 6),
                               Text(
                                 activity.description,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.inter(
                                     fontSize: 12,
                                     color: AppColors.textSecondary,
-                                    height: 1.4),
+                                    height: 1.5),
                               ),
                             ],
                           ],

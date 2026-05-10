@@ -20,7 +20,8 @@ class GroqApiService {
     final prompt =
         'Act as a professional travel planner. Create a detailed itinerary for a trip to '
         '$destination for $days days. Provide a JSON response with city stops, 3 daily '
-        'activities with estimated costs, and a brief description for each. '
+        'activities with estimated costs in Indian Rupees (INR), and a brief description for each. '
+        'All prices must be realistic INR amounts (e.g. "₹500", "₹1200", "₹350"). '
         'Return ONLY valid JSON in this exact structure, no markdown, no extra text:\n'
         '{"stops":[{"city":"string","date":"YYYY-MM-DD","activities":[{"title":"string",'
         '"category":"string","time":"string","price":"string","description":"string"}]}]}';

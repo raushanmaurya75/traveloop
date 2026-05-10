@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'screens/budget_screen.dart';
 import 'screens/dashboard_screen.dart';
-import 'screens/itinerary_screen.dart';
 import 'screens/login_screen.dart';
+import 'screens/my_trips_screen.dart';
 import 'screens/profile_screen.dart';
 import 'services/auth_service.dart';
 import 'services/error_handler.dart';
@@ -53,7 +53,7 @@ class _MainNavigationState extends State<MainNavigation> {
 
   final List<Widget> _screens = const [
     DashboardScreen(),
-    ItineraryScreen(),
+    MyTripsScreen(),
     BudgetScreen(),
     ProfileScreen(),
   ];

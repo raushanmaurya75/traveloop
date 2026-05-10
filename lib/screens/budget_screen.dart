@@ -14,13 +14,13 @@ double _parsePrice(String raw) {
   final s = raw.trim().toLowerCase();
   if (s.isEmpty || s == 'free' || s == 'n/a' || s == 'varies') return 0;
 
-  // Take only the first number in the string (handles ranges like "$20-$50")
-  final match = RegExp(r'(\d{1,6}(?:\.\d{1,2})?)').firstMatch(raw);
+  // Take only the first number in the string (handles ranges like "₹200-₹500")
+  final match = RegExp(r'(\d{1,7}(?:\.\d{1,2})?)').firstMatch(raw);
   if (match == null) return 0;
 
   final value = double.tryParse(match.group(1)!) ?? 0;
-  // Sanity cap: single activity cost should not exceed $9,999
-  return value > 9999 ? 0 : value;
+  // Sanity cap: single activity in INR should not exceed ₹99,999
+  return value > 99999 ? 0 : value;
 }
 
 Map<String, double> _computeTotals(List<Activity> activities) {
@@ -283,7 +283,7 @@ class _OverBudgetBanner extends StatelessWidget {
                         fontSize: 14,
                         color: AppColors.error)),
                 Text(
-                    'You\'ve exceeded your limit by \$${over.toStringAsFixed(0)}',
+                    'You\'ve exceeded your limit by ₹${over.toStringAsFixed(0)}',
                     style: GoogleFonts.inter(
                         fontSize: 12,
                         color: AppColors.error.withValues(alpha: 0.8))),
@@ -382,15 +382,14 @@ class _PieCard extends StatelessWidget {
                               fontSize: 11,
                               color: AppColors.textSecondary,
                               fontWeight: FontWeight.w500)),
-                      Text(
-                          '\$${entries[touchedIndex!].value.toStringAsFixed(0)}',
+                Text('₹${entries[touchedIndex!].value.toStringAsFixed(0)}',
                           style: GoogleFonts.poppins(
                               fontSize: 26,
                               fontWeight: FontWeight.w800,
                               color: _categoryColor(entries[touchedIndex!].key),
                               letterSpacing: -0.5)),
                     ] else ...[
-                      Text('\$${grandTotal.toStringAsFixed(0)}',
+                      Text('₹${grandTotal.toStringAsFixed(0)}',
                           style: GoogleFonts.poppins(
                               fontSize: 28,
                               fontWeight: FontWeight.w800,
@@ -405,7 +404,7 @@ class _PieCard extends StatelessWidget {
                               fontWeight: FontWeight.w500)),
                       if (budget > 0) ...[
                         const SizedBox(height: 4),
-                        Text('of \$${budget.toStringAsFixed(0)}',
+                        Text('of ₹${budget.toStringAsFixed(0)}',
                             style: GoogleFonts.inter(
                                 fontSize: 11,
                                 color: isOverBudget
@@ -541,7 +540,7 @@ class _BudgetLimitRowState extends State<_BudgetLimitRow> {
               hintText: 'Set budget limit (optional)',
               prefixIcon:
                   const Icon(Icons.savings_outlined, color: AppColors.primary),
-              prefixText: '\$ ',
+              prefixText: '₹ ',
               prefixStyle: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600, color: AppColors.textMain),
             ),
@@ -622,7 +621,7 @@ class _CategoryTile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text('\$${amount.toStringAsFixed(0)}',
+                  Text('₹${amount.toStringAsFixed(0)}',
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w800,
                           fontSize: 17,
@@ -681,7 +680,7 @@ class _DailyCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text('\$${daily.toStringAsFixed(0)}',
+              Text('₹${daily.toStringAsFixed(0)}',
                   style: GoogleFonts.poppins(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,

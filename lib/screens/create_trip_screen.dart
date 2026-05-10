@@ -90,7 +90,7 @@ class _CreateTripScreenState extends State<CreateTripScreen> {
         Scaffold(
           backgroundColor: AppColors.background,
           appBar: AppBar(
-            title: Text('Plan New Trip',
+            title: Text('Create Trip',
                 style: GoogleFonts.poppins(fontWeight: FontWeight.w700)),
           ),
           body: Form(
@@ -126,8 +126,8 @@ class _CreateTripScreenState extends State<CreateTripScreen> {
                 const SizedBox(height: 32),
                 FilledButton.icon(
                   onPressed: _loading ? null : _generate,
-                  icon: const Icon(Icons.auto_awesome_rounded),
-                  label: Text('Generate with AI',
+                  icon: const Icon(Icons.rocket_launch_rounded),
+                  label: Text('Create My Trip',
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600, fontSize: 16)),
                   style: FilledButton.styleFrom(
@@ -179,7 +179,7 @@ class _CreateTripScreenState extends State<CreateTripScreen> {
               ),
               const SizedBox(height: 24),
               Text(
-                'Generating your\ndream trip...',
+                'Planning your trip...',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
@@ -190,7 +190,7 @@ class _CreateTripScreenState extends State<CreateTripScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Our AI is crafting a personalized\nitinerary just for you.',
+                'Building your personalized\nitinerary. Please wait.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
                   fontSize: 13,
